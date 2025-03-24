@@ -52,7 +52,7 @@ Muestra la lista de tareas actuales.
 ### Eliminar una Tarea
 Se elimina una tarea por su índice en la lista y se vuelve a listar para verificar los cambios.
 
-3. Explicación de las Funciones y Rutas
+Explicación de las Funciones y Rutas
 Funciones:
 addTask(task): Recibe una tarea y la agrega al arreglo si no se ha alcanzado el límite de tareas.
 
