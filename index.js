@@ -28,7 +28,7 @@ parseInt("10", 10); // Devuelve 10 (número)
 //,10 significa que el número es en base decimal (normal, base 10). Siempre ponlo así.
 //¿Por qué es necesario convertirlo?
 //Porque si no lo conviertes, JavaScript trataría el número como texto. 
-app.delete("/tasks:index", (req, res) => {
+app.delete("/tasks/:index", (req, res) => {
 const index = parseInt(req.params.index, 10);
 const resultadodelete = removeTask(index);
 if(!resultadodelete)
