@@ -4,10 +4,8 @@ const { addTask, listTasks, removeTask,updateTask } = require("./tasks");
 //aqui ambos metodos son iguales
 //send puedes enviar cualquier tipo de datos: texto,JSON, HTML lo que usted desee.
 //en cuanto a JSON envia el archivo en formato json pero limpio, es similar pero para respuestas en formato json.    
-app.get("/tasks", (req, res) =>{
-const ListaTareas = listTasks();    
-res.json(ListaTareas);
-
+app.get("/tasks", (req, res) => {
+    res.json(listTasks());
 });
 
 
@@ -15,14 +13,13 @@ res.json(ListaTareas);
 //por ejemplo si queremos que el inicie sesion, si queremos que el envie alguna consulta.
 //en este caso le estamos enviando un dato al servidor de que queremos agregar una tarea.
 //tambien es necesario usar req.body para guardar lo que envia en solicitud a POST.
-app.post("/tasks", (req, res) =>{
-const { task } = req.body //guarda lo que envio el usuario
-const resultado = addTask(task);
-if(!resultado)
-    {
-    return res.status(404).json({ message: "Ocurrio un error al añadir una tarea"}); // obtenemos el resultado de la consulta para añadir una tarea
+app.post("/tasks", (req, res) => {
+    const { task } = req.body;
+    const resultado = addTask(task);
+    if (!resultado) {
+        return res.status(400).json({ message: "No se pudo agregar la tarea" });
     }
-return res.status(200).json({ messsage: "Tarea agregada correctamente"});
+    return res.status(201).json({ message: "Tarea agregada correctamente", task: resultado });
 });
 
 //La función parseInt() convierte un texto a número entero.
@@ -34,24 +31,22 @@ parseInt("10", 10); // Devuelve 10 (número)
 //¿Por qué es necesario convertirlo?
 //Porque si no lo conviertes, JavaScript trataría el número como texto. 
 app.delete("/tasks/:index", (req, res) => {
-const index = parseInt(req.params.index, 10);
-const resultadodelete = removeTask(index);
-if(!resultadodelete)
-    {
-    return res.status(404).json({ message: "Ocurrio un error al eliminar una tarea"});
+    const index = parseInt(req.params.index, 10) - 1; // Restar 1 porque los índices empiezan en 0
+    const resultadoDelete = removeTask(index);
+    if (!resultadoDelete) {
+        return res.status(404).json({ message: "No se pudo eliminar la tarea" });
     }
-return res.status(200).json({ message: "Tarea eliminada con exito"});
+    return res.status(200).json({ message: "Tarea eliminada con éxito", task: resultadoDelete });
 });
 
 //la petición PUT se usa para reemplazar todos los datos de un recurso
 //en este caso usamos funciones anteriores y metodos anteriores como el req.body.
 app.put("/tasks/:index", (req, res) => {
-const index = parseInt(req.params.index, 10);
-const { nuevaTarea } = req.body;
-const resultadoNuevaT = updateTask(index, nuevaTarea);
-if(!resultadoNuevaT)
-    {
-    return res.status(404).json({ message: "No se pudo actualiza la tarea"});
+    const index = parseInt(req.params.index, 10) - 1; // Restar 1 porque los índices empiezan en 0
+    const { task } = req.body;
+    const resultadoNuevaT = updateTask(index, task);
+    if (!resultadoNuevaT) {
+        return res.status(404).json({ message: "No se pudo actualizar la tarea" });
     }
-return res.status(200).json({ message: "Tarea actualizada con exito"});
+    return res.status(200).json({ message: "Tarea actualizada con éxito", task: resultadoNuevaT });
 });
