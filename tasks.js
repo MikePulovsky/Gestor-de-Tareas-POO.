@@ -47,7 +47,7 @@ function updateTask(index, newTasks) {
     }
     tasks[index] = newTasks;
     console.log(`Tarea actualizada: ${index + 1}. ${newTasks}`);
-    return false;
+    return true;
 
 }
 
