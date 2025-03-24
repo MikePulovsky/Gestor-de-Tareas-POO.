@@ -52,14 +52,27 @@ Muestra la lista de tareas actuales.
 ### Eliminar una Tarea
 Se elimina una tarea por su índice en la lista y se vuelve a listar para verificar los cambios.
 
-## ✍️ Mandato para los Estudiantes
+3. Explicación de las Funciones y Rutas
+Funciones:
+addTask(task): Recibe una tarea y la agrega al arreglo si no se ha alcanzado el límite de tareas.
 
-1. **Clonen el repositorio** en su máquina local.
-2. **Revisen el código** en `tasks.js` e `index.js` para comprender su funcionamiento.
-3. **Modifiquen el código** agregando una nueva función llamada `updateTask(index, newTask)`, que permita actualizar el contenido de una tarea existente.
-4. **Prueben la función** llamándola desde `index.js` y verificando su funcionamiento en la consola.
-5. **Suban su versión modificada** a un repositorio personal y compartan el enlace.
+listTasks(): Devuelve todas las tareas almacenadas.
+
+removeTask(index): Elimina una tarea especificada por su índice.
+
+updateTask(index, newTask): Actualiza una tarea en el índice dado con la nueva descripción.
+
+Rutas:
+GET /tasks: Devuelve todas las tareas almacenadas en formato JSON.
+
+POST /tasks: Recibe una nueva tarea y la agrega al sistema.
+
+DELETE /tasks/:index: Elimina la tarea que corresponde al índice pasado en la URL.
+
+PUT /tasks/:index: Actualiza una tarea existente con los nuevos datos enviados en la solicitud.
 
 ## 📜 Licencia
 Este proyecto es de uso libre para fines educativos.
+
+
 
