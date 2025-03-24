@@ -15,9 +15,15 @@ function addTask(task) {
 
 // Función para listar todas las tareas
 function listTasks() {
-    return tasks;
+    console.log("Lista de tareas:");
+    if (tasks.length === 0) {
+        console.log("No hay tareas.");
+    } else {
+        tasks.forEach((task, index) => {
+            console.log(`${index + 1}. ${task}`);
+        });
+    }
 }
-
 
 // Función para eliminar una tarea por su índice
 function removeTask(index) {
