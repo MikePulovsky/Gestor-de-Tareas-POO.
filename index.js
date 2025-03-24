@@ -6,7 +6,7 @@ const { addTask, listTasks, removeTask,updateTask } = require("./tasks");
 //en cuanto a JSON envia el archivo en formato json pero limpio, es similar pero para respuestas en formato json.    
 app.get("/tasks", (req, res) =>{
 const ListaTareas = listTasks();    
-res.json(task);
+res.json(ListaTareas);
 
 });
 
